@@ -7,31 +7,34 @@
 
             <!-- Cropper container -->
             <div v-if="this.imageSrc"
-                class="my-3 d-flex align-items-center justify-content-center mx-auto" style="width: 500px">
-                <vue-cropper
-                    class="mr-2 w-50"
-                    ref="cropper"
-                    :view-mode="2"
-                    :guides="true"
-                    :src="imageSrc"
-                    :aspectRatio="1/1"
-                ></vue-cropper>
-                <!-- Cropped image previewer -->
-                <img class="ml-2 w-50 bg-light" :src="croppedImageSrc" />
-            </div>
-            <button v-if="this.imageSrc" @click="cropImage">Crop</button>
-            <button v-if="this.croppedImageSrc" @click="uploadImage">Upload</button>
+                class="my-3 d-flex align-items-center justify-content-center mx-auto" style="width: 800px">
 
-            <b-modal ref="my-modal" hide-footer title="Using Component Methods">
+                <!-- Cropped image previewer -->
+
+            </div>
+
+            <b-modal ref="my-modal" size="lg" hide-footer title="Using Component Methods">
                 <div class="d-block text-center">
-                    <h3>Hello From My Modal!</h3>
-                    <h3>Hello From My Modal!</h3>
-                    <h3>Hello From My Modal!</h3>
-                    <h3>Hello From My Modal!</h3>
-                    <h3>Hello From My Modal!</h3>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <vue-cropper
+                                class="mr-2 w-50"
+                                ref="cropper"
+
+                                :guides="true"
+                                :src="imageSrc"
+                                :aspectRatio=18/10
+                            ></vue-cropper>
+                        </div>
+                        <div class="col-sm-6">
+                            <img class="ml-2 w-50 bg-light" :src="croppedImageSrc" />
+                        </div>
+                    </div>
+
+                    <b-button variant="primary" v-if="this.imageSrc" @click="cropImage">Crop</b-button>
+                    <b-button variant="warning" v-if="this.croppedImageSrc" @click="uploadImage">Upload</b-button>
                 </div>
-                <b-button class="mt-3" variant="outline-danger" block >Close Me</b-button>
-                <b-button class="mt-2" variant="outline-warning" block >Toggle Me</b-button>
+                <b-button class="mt-3" variant="outline-primary" block @click="hideModal">Close Me</b-button>
             </b-modal>
 
         </div>
@@ -66,7 +69,13 @@ export default {
         }
     },
     methods: {
+        hideModal() {
+            this.$refs['my-modal'].hide()
+        },
         setImage:function (e){
+
+            this.$refs['my-modal'].show();
+
             const file = e.target.files[0]
             if (!file.type.includes("image/")) {
                 alert("Please select an image file")
