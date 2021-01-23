@@ -3,7 +3,7 @@
             <input type="file" name="image" accept="image/*" @change="setImage" />
 
             <!-- Image previewer -->
-            <img :src="imageSrc" width="50" />
+            <img :src="imageSrc" width="100" />
 
             <!-- Cropper container -->
             <div v-if="this.imageSrc"
@@ -97,6 +97,7 @@ export default {
         cropImage() {
             // Get image data for post processing, e.g. upload or setting image src
             this.croppedImageSrc = this.$refs.cropper.getCroppedCanvas().toDataURL()
+            this.imageSrc = this.$refs.cropper.getCroppedCanvas().toDataURL()
         },
         uploadImage() {
             this.$refs.cropper.getCroppedCanvas().toBlob(function (blob) {
