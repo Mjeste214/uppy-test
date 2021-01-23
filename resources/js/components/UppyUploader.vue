@@ -21,27 +21,20 @@
             </div>
             <button v-if="this.imageSrc" @click="cropImage">Crop</button>
             <button v-if="this.croppedImageSrc" @click="uploadImage">Upload</button>
-        </div>
 
-<!--    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-<!--        <div class="modal-dialog" role="document">-->
-<!--            <div class="modal-content">-->
-<!--                <div class="modal-header">-->
-<!--                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
-<!--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--                        <span aria-hidden="true">&times;</span>-->
-<!--                    </button>-->
-<!--                </div>-->
-<!--                <div class="modal-body">-->
-<!--                    asdfadfasdf-->
-<!--                </div>-->
-<!--                <div class="modal-footer">-->
-<!--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-<!--                    <button type="button" class="btn btn-primary">Save changes</button>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+            <b-modal ref="my-modal" hide-footer title="Using Component Methods">
+                <div class="d-block text-center">
+                    <h3>Hello From My Modal!</h3>
+                    <h3>Hello From My Modal!</h3>
+                    <h3>Hello From My Modal!</h3>
+                    <h3>Hello From My Modal!</h3>
+                    <h3>Hello From My Modal!</h3>
+                </div>
+                <b-button class="mt-3" variant="outline-danger" block >Close Me</b-button>
+                <b-button class="mt-2" variant="outline-warning" block >Toggle Me</b-button>
+            </b-modal>
+
+        </div>
 </template>
 
 <script>
@@ -49,6 +42,16 @@
 import Vue from 'vue';
 import VueCropper from 'vue-cropperjs';
 import 'cropperjs/dist/cropper.css';
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+
+// Import Bootstrap an BootstrapVue CSS files (order is important)
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+// Make BootstrapVue available throughout your project
+Vue.use(BootstrapVue)
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin)
 
 Vue.component(VueCropper);
 
